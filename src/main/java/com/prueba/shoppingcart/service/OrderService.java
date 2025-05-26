@@ -5,7 +5,9 @@ import com.prueba.shoppingcart.dto.ProductDTO;
 import com.prueba.shoppingcart.entity.Client;
 import com.prueba.shoppingcart.entity.Order;
 import com.prueba.shoppingcart.entity.OrderDetail;
+import com.prueba.shoppingcart.exception.CustomException;
 import com.prueba.shoppingcart.repository.OrderRepository;
+import jakarta.persistence.PersistenceException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -31,27 +33,49 @@ public class OrderService {
     }
 
     public Order addOrder(Order order) {
-        //SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        order.setCreationDate(new Date());
-        Double total = 0.00;
-        List<OrderDetail> detailList = new ArrayList<>();
+        try {
+            boolean existClient = false;
+            for (Client client : avaliableClients) {
+                if (client.getId().equals(order.getClientId())) {existClient = true;break;}
+            }
+            if (existClient) {
+                order.setCreationDate(new Date());
+                Double total = 0.00;
+                List<OrderDetail> detailList = new ArrayList<>();
 
-        for (OrderDetail item : order.getOrderDetails()) {
-            ProductDTO product = productoClient.getProductById(item.getProductId());
-            Double subtotal = product.getPrice() * item.getQty();
-            total += subtotal;
+                for (OrderDetail item : order.getOrderDetails()) {
+                    ProductDTO product = productoClient.getProductById(item.getProductId());
+                    Double subtotal = product.getPrice() * item.getQty();
+                    total += subtotal;
 
-            OrderDetail detail = new OrderDetail();
-            detail.setProductId(product.getId());
-            detail.setQty(item.getQty());
-            detail.setUnitPrice(product.getPrice());
-            detail.setOrder(order);
-            detailList.add(detail);
+                    OrderDetail detail = new OrderDetail();
+                    detail.setProductId(product.getId());
+                    detail.setQty(item.getQty());
+                    detail.setUnitPrice(product.getPrice());
+                    detail.setOrder(order);
+                    detailList.add(detail);
+                }
+
+                order.setTotal(total);
+                order.setOrderDetails(detailList);
+                return orderRepository.save(order);
+            }else {
+                System.out.println("Cliente no disponible");
+                return null;
+            }
+        }catch (PersistenceException ex) {
+            // Manejar errores de la base de datos, como problemas de conexión o constraints
+            throw new CustomException("Error al insertar la cita en la base de datos. ", ex);
+        } catch (Exception ex) {
+            // Manejar cualquier otra excepción
+            throw new CustomException("Error inesperado al insertar la cita. ", ex);
         }
 
-        order.setTotal(total);
-        order.setOrderDetails(detailList);
-        return orderRepository.save(order);
+    }
+
+    public void cancelOrder(Integer orderId) {
+        Order order = orderRepository.findById(orderId).orElseThrow();
+        orderRepository.delete(order);
     }
 
     public List<Order> getAllOrders() {

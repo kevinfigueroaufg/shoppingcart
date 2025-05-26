@@ -2,8 +2,10 @@ package com.prueba.shoppingcart.controller;
 
 import com.prueba.shoppingcart.entity.Order;
 import com.prueba.shoppingcart.service.OrderService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -33,6 +35,16 @@ public class OrderController {
         return orderService.getOrdersByID(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/orders/{id}")
+    public String cancelOrder(@PathVariable Integer id) {
+        try {
+            orderService.cancelOrder(id);
+            return "Orden cancelada";
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontro orden");
+        }
     }
 }
 

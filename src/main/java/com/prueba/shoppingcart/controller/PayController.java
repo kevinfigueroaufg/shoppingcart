@@ -21,8 +21,7 @@ public class PayController {
     }
 
     @PostMapping("/pay/{orderId}")
-    public ResponseEntity<String> procesarPago(@PathVariable Integer orderId) {
-        // Simulación del proceso de pago
+    public ResponseEntity<String> processPayment(@PathVariable Integer orderId) {
         Pay response = payService.payOrder(orderId);
         if (response != null) {
             return ResponseEntity.ok("Pago procesado exitosamente para la orden: " + response.getOrderId()+" por "+response.getTotal());
