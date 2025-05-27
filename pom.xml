@@ -105,7 +105,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>shoppingcart0.0.4</finalName>
+		<finalName>shoppingcart0.0.5</finalName>
 	</build>
 
 </project>
