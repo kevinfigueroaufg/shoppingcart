@@ -9,7 +9,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8081/shoppingcart/pay/1",
+			"name": "getToken",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -22,6 +22,348 @@
 						"value": "insomnia/11.1.0"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"username\": \"johnd\",\r\n    \"password\": \"m38rmF$\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL2}}/auth/login",
+					"host": [
+						"{{baseURL2}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfully / 200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL1}}/shoppingcart/addOrder",
+							"host": [
+								"{{baseURL1}}"
+							],
+							"path": [
+								"shoppingcart",
+								"addOrder"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 25 May 2025 21:55:31 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"id\": 1,\n \"creationDate\": \"2025-05-25T21:55:29.697+00:00\",\n \"clientId\": 5,\n \"total\": 2360.89,\n \"orderDetails\": [\n  {\n   \"id\": 1,\n   \"productId\": 1,\n   \"qty\": 2,\n   \"unitPrice\": 109.95\n  },\n  {\n   \"id\": 2,\n   \"productId\": 3,\n   \"qty\": 1,\n   \"unitPrice\": 55.99\n  },\n  {\n   \"id\": 3,\n   \"productId\": 5,\n   \"qty\": 3,\n   \"unitPrice\": 695\n  }\n ]\n}"
+				}
+			]
+		},
+		{
+			"name": "getAllUsers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "insomnia/11.1.0"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL2}}/users",
+					"host": [
+						"{{baseURL2}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfully / 200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL1}}/shoppingcart/orders",
+							"host": [
+								"{{baseURL1}}"
+							],
+							"path": [
+								"shoppingcart",
+								"orders"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 25 May 2025 21:55:53 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"id\": 1,\n  \"creationDate\": \"2025-05-25T21:55:29.697+00:00\",\n  \"clientId\": 5,\n  \"total\": 2360.89,\n  \"orderDetails\": [\n   {\n    \"id\": 1,\n    \"productId\": 1,\n    \"qty\": 2,\n    \"unitPrice\": 109.95\n   },\n   {\n    \"id\": 2,\n    \"productId\": 3,\n    \"qty\": 1,\n    \"unitPrice\": 55.99\n   },\n   {\n    \"id\": 3,\n    \"productId\": 5,\n    \"qty\": 3,\n    \"unitPrice\": 695\n   }\n  ]\n }\n]"
+				}
+			]
+		},
+		{
+			"name": "pay",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "User-Agent",
+						"value": "insomnia/11.1.0"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL1}}/shoppingcart/pay/1",
+					"host": [
+						"{{baseURL1}}"
+					],
+					"path": [
+						"shoppingcart",
+						"pay",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfully / 200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL1}}/shoppingcart/addOrder",
+							"host": [
+								"{{baseURL1}}"
+							],
+							"path": [
+								"shoppingcart",
+								"addOrder"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 25 May 2025 21:55:31 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"id\": 1,\n \"creationDate\": \"2025-05-25T21:55:29.697+00:00\",\n \"clientId\": 5,\n \"total\": 2360.89,\n \"orderDetails\": [\n  {\n   \"id\": 1,\n   \"productId\": 1,\n   \"qty\": 2,\n   \"unitPrice\": 109.95\n  },\n  {\n   \"id\": 2,\n   \"productId\": 3,\n   \"qty\": 1,\n   \"unitPrice\": 55.99\n  },\n  {\n   \"id\": 3,\n   \"productId\": 5,\n   \"qty\": 3,\n   \"unitPrice\": 695\n  }\n ]\n}"
+				}
+			]
+		},
+		{
+			"name": "getAllPayments",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "insomnia/11.1.0"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL1}}/shoppingcart/payments",
+					"host": [
+						"{{baseURL1}}"
+					],
+					"path": [
+						"shoppingcart",
+						"payments"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfully / 200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.1.0"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL1}}/shoppingcart/orders",
+							"host": [
+								"{{baseURL1}}"
+							],
+							"path": [
+								"shoppingcart",
+								"orders"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 25 May 2025 21:55:53 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"id\": 1,\n  \"creationDate\": \"2025-05-25T21:55:29.697+00:00\",\n  \"clientId\": 5,\n  \"total\": 2360.89,\n  \"orderDetails\": [\n   {\n    \"id\": 1,\n    \"productId\": 1,\n    \"qty\": 2,\n    \"unitPrice\": 109.95\n   },\n   {\n    \"id\": 2,\n    \"productId\": 3,\n    \"qty\": 1,\n    \"unitPrice\": 55.99\n   },\n   {\n    \"id\": 3,\n    \"productId\": 5,\n    \"qty\": 3,\n    \"unitPrice\": 695\n   }\n  ]\n }\n]"
+				}
+			]
+		},
+		{
+			"name": "addOrder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "User-Agent",
+						"value": "insomnia/11.1.0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"clientId\": 5,\r\n  \"orderDetails\": [\r\n    { \"productId\": 1, \"qty\": 2 },\r\n    { \"productId\": 3, \"qty\": 1 },\r\n\t\t{ \"productId\": 5, \"qty\": 3 }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "{{baseURL1}}/shoppingcart/addOrder",
 					"host": [
@@ -94,7 +436,7 @@
 			]
 		},
 		{
-			"name": "localhost:8081/shoppingcart/payments",
+			"name": "getAllOrders",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -171,169 +513,7 @@
 			]
 		},
 		{
-			"name": "localhost:8081/shoppingcart/addOrder",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "User-Agent",
-						"value": "insomnia/11.1.0"
-					}
-				],
-				"url": {
-					"raw": "{{baseURL1}}/shoppingcart/addOrder",
-					"host": [
-						"{{baseURL1}}"
-					],
-					"path": [
-						"shoppingcart",
-						"addOrder"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "successfully / 200",
-					"originalRequest": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "User-Agent",
-								"value": "insomnia/11.1.0"
-							}
-						],
-						"url": {
-							"raw": "{{baseURL1}}/shoppingcart/addOrder",
-							"host": [
-								"{{baseURL1}}"
-							],
-							"path": [
-								"shoppingcart",
-								"addOrder"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Vary",
-							"value": "Origin"
-						},
-						{
-							"key": "Vary",
-							"value": "Access-Control-Request-Method"
-						},
-						{
-							"key": "Vary",
-							"value": "Access-Control-Request-Headers"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 25 May 2025 21:55:31 GMT"
-						}
-					],
-					"cookie": [],
-					"body": "{\n \"id\": 1,\n \"creationDate\": \"2025-05-25T21:55:29.697+00:00\",\n \"clientId\": 5,\n \"total\": 2360.89,\n \"orderDetails\": [\n  {\n   \"id\": 1,\n   \"productId\": 1,\n   \"qty\": 2,\n   \"unitPrice\": 109.95\n  },\n  {\n   \"id\": 2,\n   \"productId\": 3,\n   \"qty\": 1,\n   \"unitPrice\": 55.99\n  },\n  {\n   \"id\": 3,\n   \"productId\": 5,\n   \"qty\": 3,\n   \"unitPrice\": 695\n  }\n ]\n}"
-				}
-			]
-		},
-		{
-			"name": "localhost:8081/shoppingcart/orders",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "User-Agent",
-						"value": "insomnia/11.1.0"
-					}
-				],
-				"url": {
-					"raw": "{{baseURL1}}/shoppingcart/orders",
-					"host": [
-						"{{baseURL1}}"
-					],
-					"path": [
-						"shoppingcart",
-						"orders"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "successfully / 200",
-					"originalRequest": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "User-Agent",
-								"value": "insomnia/11.1.0"
-							}
-						],
-						"url": {
-							"raw": "{{baseURL1}}/shoppingcart/orders",
-							"host": [
-								"{{baseURL1}}"
-							],
-							"path": [
-								"shoppingcart",
-								"orders"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Vary",
-							"value": "Origin"
-						},
-						{
-							"key": "Vary",
-							"value": "Access-Control-Request-Method"
-						},
-						{
-							"key": "Vary",
-							"value": "Access-Control-Request-Headers"
-						},
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Transfer-Encoding",
-							"value": "chunked"
-						},
-						{
-							"key": "Date",
-							"value": "Sun, 25 May 2025 21:55:53 GMT"
-						}
-					],
-					"cookie": [],
-					"body": "[\n {\n  \"id\": 1,\n  \"creationDate\": \"2025-05-25T21:55:29.697+00:00\",\n  \"clientId\": 5,\n  \"total\": 2360.89,\n  \"orderDetails\": [\n   {\n    \"id\": 1,\n    \"productId\": 1,\n    \"qty\": 2,\n    \"unitPrice\": 109.95\n   },\n   {\n    \"id\": 2,\n    \"productId\": 3,\n    \"qty\": 1,\n    \"unitPrice\": 55.99\n   },\n   {\n    \"id\": 3,\n    \"productId\": 5,\n    \"qty\": 3,\n    \"unitPrice\": 695\n   }\n  ]\n }\n]"
-				}
-			]
-		},
-		{
-			"name": "localhost:8081/shoppingcart/orders/1",
+			"name": "getOrdersByID",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -412,7 +592,7 @@
 			]
 		},
 		{
-			"name": "localhost:8081/shoppingcart/orders/1",
+			"name": "cancelOrder",
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -491,8 +671,18 @@
 			]
 		},
 		{
-			"name": "localhost:8081/shoppingcart/products/1",
+			"name": "getProductsByID",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXIiOiJqb2huZCIsImlhdCI6MTc0ODMxMzkxNH0.oOkOkPrkY-fsY5vvT1Fkqci4CVQIi59TcQhqRSAQs0g",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
@@ -570,7 +760,7 @@
 			]
 		},
 		{
-			"name": "localhost:8081/shoppingcart/products",
+			"name": "getAllProducts",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -647,11 +837,38 @@
 			]
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
 			"key": "baseURL1",
 			"value": "http://localhost:8081",
 			"type": "any"
+		},
+		{
+			"key": "baseURL2",
+			"value": "https://fakestoreapi.com",
+			"type": "string"
 		}
 	]
 }
